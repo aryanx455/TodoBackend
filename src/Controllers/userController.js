@@ -48,9 +48,9 @@ exports.login = async (req, res) => {
             },
             TOKEN_SECRET
         );
-        res.json({ message: "Login successful", token });
+        res.json({ message: "Login successful", token ,email,firstname:result.firstname,lastname:result.lastname});
     } catch (err) {
-        return res.status(500).json({ message: err.message });
+        return res.status(500).json({ message: "invalid" });
     }
 };
 
