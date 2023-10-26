@@ -6,6 +6,7 @@ const {
     deleteTodo,
     completeTodo,
     inCompleteTodo,
+    updateTodo,
 } = require("../Controllers/todoController");
 
 todoRouter.get("/", (req, res) => {
@@ -16,5 +17,6 @@ todoRouter.post("/addTodo", addTodo);
 todoRouter.post("/deleteTodo", deleteTodo);
 todoRouter.post("/completeTodo", completeTodo);
 todoRouter.post("/incompleteTodo", inCompleteTodo);
+todoRouter.post("/updateTodo", updateTodo);
 
 module.exports = todoRouter;

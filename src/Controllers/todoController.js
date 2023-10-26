@@ -81,3 +81,19 @@ exports.inCompleteTodo = async (req, res) => {
         return res.status(500).json({ message: err.message });
     }
 };
+exports.updateTodo = async (req, res) => {
+    const { token, id, newTask } = req.body;
+    if (!token) return res.status(401).json({ message: "Unauthorized" });
+    const verified = jwt.verify(token, process.env.TOKEN_SECRET);
+    if (!verified) return res.status(401).json({ message: "Unauthorized" });
+    if (!id)
+        return res.status(400).json({ message: "Please enter all fields" });
+    try {
+        const result = await Todo.findByIdAndUpdate(id, {
+            task: newTask,
+        }).exec();
+        res.json({ message: "Todo updated successfully", result });
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    }
+};
